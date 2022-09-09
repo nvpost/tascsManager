@@ -1,0 +1,227 @@
+p{
+    margin: 5px 0px;
+}
+td, th {
+    text-align: center;
+}
+
+.active_icons{
+    cursor: pointer;
+}
+textarea{
+    height: auto;
+}
+.input-field.textarea_field>label.active{
+    transform: translateY(-18px) scale(0.8)!important;
+}
+
+.error{
+    font-size: 1rem;
+    padding: 10px;
+}
+
+.chip .material-icons,
+.add_icon,
+.edit_icon{
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 32px;
+    padding-left: 8px;
+}
+.lr_header{
+    display: flex;
+    align-items: baseline;
+}
+.collection label{
+    margin-right: 20px;
+}
+.right_nav_panel{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+nav .brand-logo{
+    position: unset;
+    margin-right: 20px;
+}
+.near_logo_nav_item{
+    padding: 0 15px;
+}
+[type="checkbox"]+span:not(.lever){
+    padding-left: 25px;
+}
+.modal.tasc_modal{
+    max-height: 75%;
+}
+.projects_tascs_field{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.projects_tascs_field .card-panel{
+    padding: 10px;
+    width: 23%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+.projects_tascs_field .card-panel h5,
+.projects_tascs_field .card-panel h6{
+    margin-top: 0px;
+}
+.projects_tascs_field .card-panel .btn-flat{
+    padding: 0px;
+}
+.projects_tascs_field .card-panel .dates{
+    font-size: 0.8em;
+}
+.card_actions{
+    margin-top: auto;
+}
+.active_bar{
+    float:right;
+}
+
+.tasc_modal .modal.datepicker-modal.open{
+    max-width: 800px;
+    width: 600px;
+    top: 30%;
+}
+.tasc_modal .modal-overlay{
+    height: 150%;
+}
+.tasc_modal .collection-item{
+    animation-fill-mode: forwards;
+}
+
+.tasc_item{
+    padding: 10px 15px;
+    height: auto;
+    box-shadow: 1px 1px 1px #ccc;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.tasc_item:hover,
+.add_board_btn:hover{
+    box-shadow: 2px 2px 3px #9d9b9b;
+    color: #000;
+}
+
+.column {
+    width: 220px;
+    background: #f3f3f3;
+    min-height: 60vh;
+    padding: 5px;
+    border-radius: 10px;
+    margin-left:10px;
+    position: relative;
+}
+.column.work_column{
+    padding-top: 65px;
+}
+.column h4{
+    font-size: 22px;
+}
+
+h4.board_header{
+    position: absolute;
+    left: 20px;
+    top: 6px;
+
+}
+.boards_field{
+    position: relative;
+    min-height: 61vh;
+}
+.boards_line{
+    display: flex;
+    align-items: center;
+    position: absolute;
+}
+
+.add_canban_actions{
+    margin-top: 10px;
+}
+
+.add_board_btn{
+    background-color: #f3f3f3;
+    margin:0px 10px;
+    border-radius: 10px;
+    color: #000;
+    height: 100px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 1px 1px #ccc;
+    transition: all 0.3s;
+}
+.add_board_btn>i.material-icons{
+    font-size: 5em;
+}
+
+.close_icon{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 1.4em;
+    color: #e1e1e1;
+    transition: all 0.3s;
+}
+.close_icon:hover{
+    color: #8e8e8e;
+}
+
+
+
+/*matrix*/
+.matrix_board{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 80vh;
+}
+
+.matrix_field{
+    width: 49.5%;
+    height: 39vh;
+    position: relative;
+    padding-top: 50px;
+    padding-left: 10px
+}
+
+.matrix_field .matrix_header{
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    width: 90%;
+    text-align: center;
+    font-size: 22px;
+    color: #000;
+}
+
+
+
+.matrix_backround{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 3em;
+}
+
+.active_block_btns{
+    margin-top: 20px;
+}
+.edit_team.float_edit_banner{
+    position: fixed;
+    top: 110px;
+    right: 20px;
+}
+
+
