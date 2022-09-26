@@ -5,7 +5,12 @@
 @section('main_content')
 <h1>Мои проекты</h1>
 
-@include('content.Projects_table', ['projects'=>$projects, 'addToteam' => false])
+@if(count($projects)>0)
+    @include('content.Projects_table', ['projects'=>$projects, 'addToteam' => false])
+@else
+
+    <p>Пока нет проектов</p>
+@endif
 
 
 

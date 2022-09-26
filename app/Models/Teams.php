@@ -14,7 +14,7 @@ class Teams extends Model
     public $fillable = [
         'creator_id',
         'name',
-        'decription',
+        'description',
         'status'
     ];
 

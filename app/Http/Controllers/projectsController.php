@@ -21,7 +21,8 @@ class projectsController extends Controller
     }
 
     public function showProject($id){
-        $project = Projects::where('id', $id)->find(1);
+
+        $project = Projects::where(['id'=> $id])->firstOrFail();
         $tascs = Tascs::with(['statuses', 'tascFiles'])->where('project_id', $id)->get();
         $stats = Statuses::whereIn('whose', ['tp', 't'])->get();
 
@@ -38,6 +39,7 @@ class projectsController extends Controller
     }
 
     public function projects_save(Request $req){
+
 
         $user_id =Auth::user()->id;
         $valid = $req->validate([
@@ -61,7 +63,7 @@ class projectsController extends Controller
             'finish_date'=>$finish_date
         ]);
 
-        return redirect(route('projects'));
+        return redirect(route('user.projects'));
 
     }
 }

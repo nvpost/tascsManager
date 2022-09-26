@@ -107,6 +107,7 @@ Route::group(['as'=>'user.', 'middleware' => ['auth']], function(){
     Route::post('/team/add_user', [UserTeamController::class, 'team_user_add'])->name('team_user_add');
     Route::post('/team/pinToTeam', [UserTeamController::class, 'pinToTeam'])->name('pinToTeam');
     Route::post('/team/TeamRemoveUser', [UserTeamController::class, 'TeamRemoveUser'])->name('TeamRemoveUser');
+    Route::post('/team/removeTeam', [UserTeamController::class, 'removeTeam'])->name('removeTeam');
 });
 
 

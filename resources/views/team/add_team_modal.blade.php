@@ -13,7 +13,7 @@
 
                 <div class="input-field textarea_field col s12">
                     <textarea id="description" name="description" rows="7" cols="5"></textarea>
-                    <label for="description">Функционал</label>
+                    <label for="description">Описание</label>
                 </div>
 
 

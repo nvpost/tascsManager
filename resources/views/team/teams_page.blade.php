@@ -1,5 +1,9 @@
 @extends('layout')
 
+@section('title')
+    Мои команды
+@endsection
+
 @section('main_content')
 
     <h1>Моя команда</h1>

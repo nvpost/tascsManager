@@ -2,7 +2,7 @@
 
 @php
 $sd = \Carbon\Carbon::parse($project->start_date)->translatedFormat('j F, Y');
-$fd = \Carbon\Carbon::parse($project->start_date)->translatedFormat('j F, Y');
+$fd = \Carbon\Carbon::parse($project->finish_date)->translatedFormat('j F, Y');
 $ct = \Carbon\Carbon::parse($project->created_at)->translatedFormat('j F, Y');
 
 
