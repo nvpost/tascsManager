@@ -38,7 +38,7 @@ class UserTeamController extends Controller
         $valid = $req->validate([
             'name'=>'required',
         ]);
-//        dd($req->get('description'));
+
 
         Teams::create([
             'creator_id' => Auth::user()->id,
@@ -173,9 +173,15 @@ class UserTeamController extends Controller
         $team_id=$req->get('id');
         $team = $this->canGetData($team_id);
 
+        $usersMeta = TeamsUserMeta::where(['team_id'=>$team->id]);
+        $projectsMeta = TeamsProjectsMeta::where(['team_id'=>$team->id]);
+
+        $usersMeta->delete();
+        $projectsMeta->delete();
+
         $team->delete();
 
-        return ['res'=>$team];
+        return ['res'=>'ok'];
     }
 
 

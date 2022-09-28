@@ -44,7 +44,8 @@
                 body: JSON.stringify({id})
             }).then(res=>res.json())
                 .then((data=>{
-                    window.location.reload()
+                    console.log(data)
+                    // window.location.reload()
                     }
                 ))
         }
