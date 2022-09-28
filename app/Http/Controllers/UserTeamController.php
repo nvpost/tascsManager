@@ -8,19 +8,25 @@ use App\Models\Teams;
 use App\Models\TeamsProjectsMeta;
 use App\Models\TeamsUserMeta;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
+
 class UserTeamController extends Controller
 {
     public function teams(){
-        $teams = Teams::with(['getUsersMeta', 'getUsersMeta.getUsers', 'getTeamMeta'])
-            ->where(['creator_id' => Auth::user()->id])
+        $user_id = Auth::user()->id;
+        $teams = Teams::with(['getUsersMeta', 'getUsersMeta.getUsers', 'getTeamMeta', 'getCreator'])
+            ->where(['creator_id' => $user_id])
+            ->orWhereHas('getUsersMeta', function(Builder $q) use ($user_id){
+                $q->where('user_id', '=', $user_id);
+            })
             ->get()
-        ->toArray();
+            ->toArray();
 
-//        dd($teams);
+        dd($teams);
 
         return view('team.teams_page', [
             'teams' => $teams,

@@ -13,8 +13,9 @@
 @endif
 
 
-
+<div class="active_block_btns">
 <a class="waves-effect waves-light btn" href="{{ route('user.projects_add') }}"><i class="material-icons left">add</i>Добавить проект</a>
+</div>
 @endsection
 
 

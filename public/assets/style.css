@@ -58,6 +58,11 @@ nav .brand-logo{
 .modal.tasc_modal{
     max-height: 75%;
 }
+
+.table_left_params tr th:first-child,
+.table_left_params tr td:first-child{
+    text-align: left;
+}
 .projects_tascs_field{
     display: flex;
     flex-wrap: wrap;

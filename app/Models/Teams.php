@@ -23,6 +23,10 @@ class Teams extends Model
 
     }
 
+    public function getCreator(){
+        return $this->HasOne(User::class, 'id', 'creator_id');
+    }
+
     public function getTeamMeta(){
         return $this->hasMany(TeamsProjectsMeta::class, 'team_id', 'id');
     }

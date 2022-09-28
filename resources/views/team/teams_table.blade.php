@@ -1,4 +1,4 @@
-<table>
+<table class="table_left_params">
     <thead>
     <tr>
         <th>Название</th>
