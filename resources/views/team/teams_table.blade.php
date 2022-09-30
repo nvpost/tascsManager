@@ -15,14 +15,26 @@
             <td><a href="{{ route('user.team_item',['id'=>$team['id']]) }}">
                     {{$team['name']}}
                 </a>
+                @if($team['get_creator']['id']!=Auth::user()->id)
+                     ({{$team['get_creator']['name']}})
+
+                @endif
 
             </td>
             <td>{{$team['description']}}</td>
             <td>{{count($team['get_users_meta']) }}</td>
             <td>{{count($team['get_team_meta']) }}</td>
-            <td><span
-                    class="delete_icon material-icons active_icons"
-                onclick="removeTeam('{{$team['id']}}')">delete_forever</span></td>
+            <td>
+                @if($team['get_creator']['id']!=Auth::user()->id)
+                    <span
+                        class="delete_icon material-icons active_icons"
+                        onclick="removeTeamUser('{{$team['id']}}')">person_remove_alt_1</span>
+                @else
+                    <span
+                        class="delete_icon material-icons active_icons"
+                        onclick="removeTeam('{{$team['id']}}')">delete_forever</span>
+                @endif
+            </td>
         </tr>
     @endforeach
     </tbody>
@@ -46,6 +58,20 @@
                 .then((data=>{
                     console.log(data)
                     // window.location.reload()
+                    }
+                ))
+        }
+
+
+        function removeTeamUser(team_id){
+            fetch("{{route('user.selfRemoveUser')}}", {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify({team_id})
+            }).then(res=>res.json())
+                .then((data=>{
+                        console.log(data)
+                        // window.location.reload()
                     }
                 ))
         }

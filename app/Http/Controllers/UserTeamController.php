@@ -26,7 +26,7 @@ class UserTeamController extends Controller
             ->get()
             ->toArray();
 
-        dd($teams);
+//        dd($teams);
 
         return view('team.teams_page', [
             'teams' => $teams,
@@ -188,6 +188,17 @@ class UserTeamController extends Controller
         $team->delete();
 
         return ['res'=>'ok'];
+    }
+
+    public function selfRemoveUser(Request $req){
+
+//        $user_id
+        $team_id = $req->get('team_id');
+        $usersMeta = TeamsUserMeta::where(['team_id'=>$team_id, 'user_id'=>Auth::user()->id]);
+        $usersMeta->delete();
+        return ['res'=>'ok'];
+
+
     }
 
 

@@ -6,7 +6,7 @@
 
 @section('main_content')
 
-    <h1>Моя команда</h1>
+    <h1>Мои команды</h1>
     @if($teams)
         @include('team.teams_table')
     @else
