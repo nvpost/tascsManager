@@ -6,8 +6,11 @@
         <th>Задач</th>
         <th>Старт</th>
         <th>Финиш</th>
+
         @if($addToteam)
             <th>Закрепить за командой</th>
+        @else
+            <th></th>
         @endif
     </tr>
     </thead>
@@ -53,6 +56,13 @@
                         </label>
                     </p>
                 </td>
+
+            @else
+                <td>
+                    <span
+                        class="delete_icon material-icons active_icons"
+                        onclick="removeProject('{{$p['id']}}')">delete_forever</span>
+                </td>
             @endif
         </tr>
 
@@ -60,3 +70,5 @@
     @endforeach
     </tbody>
 </table>
+
+

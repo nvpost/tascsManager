@@ -66,4 +66,16 @@ class projectsController extends Controller
         return redirect(route('user.projects'));
 
     }
+
+    public function removeProject_getInfo(Request $req){
+
+        $project = Projects::with(['Tascs', 'Tascs.tascFiles'])
+            ->where(['id'=>$req->get('id'), 'user_id'=>Auth::user()->id])
+            ->firstOrFail();
+
+
+        return ['project'=>$project, 'creator_id'=>$project->user_id];
+
+
+    }
 }

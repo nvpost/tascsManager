@@ -56,8 +56,7 @@
                 body: JSON.stringify({id})
             }).then(res=>res.json())
                 .then((data=>{
-                    console.log(data)
-                    // window.location.reload()
+                    window.location.reload()
                     }
                 ))
         }
@@ -70,8 +69,7 @@
                 body: JSON.stringify({team_id})
             }).then(res=>res.json())
                 .then((data=>{
-                        console.log(data)
-                        // window.location.reload()
+                        window.location.reload()
                     }
                 ))
         }

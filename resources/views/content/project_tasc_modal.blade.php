@@ -15,7 +15,7 @@ if(Gate::any(['canEdit', 'isAdmin'], [$t->user_id])){
             <div class="row">
                 <div class="input-field col s12">
                     <input type="hidden" id="tasc_id" name="tasc_id" value="{{$t->id}}">
-                    <input type="text" id="label" name="label" class="validate" value="{{$t->label}}" {{$disabled}}>
+                    <input type="text" id="label" name="label" value="{{$t->label}}" {{$disabled}}>
                     <label for="label">Название</label>
                 </div>
 

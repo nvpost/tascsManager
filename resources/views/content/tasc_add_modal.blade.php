@@ -10,12 +10,13 @@
 <div id="add_tasc" class="modal tasc_modal">
     <div class="modal-content">
         <h4>Добавить задачу к проекту {{$project->label}}</h4>
+
         <form method="POST" action="{{route('user.tasc_add')}}"  enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="input-field col s12">
                     <input type="hidden" id="project_id" name="project_id" value="{{$project->id}}">
-                    <input type="text" id="label" name="label" class="validate">
+                    <input type="text" id="label" name="label">
                     <label for="label">Название</label>
                 </div>
 

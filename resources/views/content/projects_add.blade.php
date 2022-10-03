@@ -10,7 +10,6 @@
 <form action="{{ route('user.projects_save') }}" method="post" >
     @csrf
 
-
     <div class="input-field">
         <input type="text" id="label" name="label" class="validate">
         <label for="label">Название</label>

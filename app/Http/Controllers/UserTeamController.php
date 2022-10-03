@@ -26,14 +26,11 @@ class UserTeamController extends Controller
             ->get()
             ->toArray();
 
-//        dd($teams);
-
         return view('team.teams_page', [
             'teams' => $teams,
 
         ]);
     }
-
 
     public function add_team(Request $req){
 
@@ -64,9 +61,21 @@ class UserTeamController extends Controller
         if(!Auth::user()){
             abort(403);
         }
-        $team = Teams::where(['id' => $id])->first();
-        //dd($id);
-        if(Auth::user()->id != $team['creator_id']){
+        $team = Teams::with(['getUsersMeta'])->where(['id' => $id])->first();
+
+        $sub_user_flag = true;
+        if(count($team['getUsersMeta'])>0){
+            $sub_users = $team['getUsersMeta'];
+
+            foreach ($sub_users as $s){
+                if($s['user_id'] == Auth::user()->id){
+                    $sub_user_flag = false;
+                }
+            }
+        }
+
+        if(Auth::user()->id != $team['creator_id'] && $sub_user_flag){
+            dd(Auth::user()->id != $team['creator_id'] || !$sub_user_flag);
             abort(403);
         }
 
@@ -77,11 +86,17 @@ class UserTeamController extends Controller
         //Добавить связь с teams_meta
 
         $projects = Projects::with(['Tascs', 'getTeamMeta'])
-            ->where(['user_id'=>Auth::user()->id])
+            ->WhereHas('getTeamMeta', function(Builder $q) use ($id){
+                $q->where('team_id', '=', $id);
+            })
             ->get()
             ->toArray();
 
-//        dd($projects);
+        $all_projects = Projects::with(['Tascs', 'getTeamMeta'])
+            ->where(['user_id'=>Auth::user()->id])
+            ->get()
+            ->toArray();
+        //dd($projects);
 
         $team = $this->canGetData($id);
 
@@ -96,7 +111,8 @@ class UserTeamController extends Controller
         return view('team.team_item', [
             'team' => $team,
             'users' => $users,
-            'projects' => $projects
+            'projects' => $projects,
+            'all_projects' => $all_projects
         ]);
     }
 

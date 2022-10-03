@@ -18,5 +18,31 @@
 </div>
 @endsection
 
+@section('scripts')
+    <script>
+
+        let headers = {
+            "X-CSRF-Token":"{{csrf_token()}}",
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        }
+
+        function removeProject(id){
+            console.log(id)
+            fetch("{{route('user.removeProject_getInfo')}}", {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify({id})
+            }).then(res=>res.json())
+                .then((data=>{
+                        //window.location.reload()
+                        console.log(data)
+                    }
+                ))
+        }
+    </script>
+
+@endsection
+
 
 

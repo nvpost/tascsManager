@@ -78,16 +78,19 @@ Route::group(['as'=>'admin.', 'middleware' => ['isAdmin'] ], function(){
 Route::group(['as'=>'user.', 'middleware' => ['auth']], function(){
 
     Route::get('/projects', [projectsController::class, 'projects'])->name('projects');
-    Route::get('/tascs', [tascsController::class, 'tascs'])->name('tascs');
+
     Route::post('/get_tasc_data', [tascsController::class, 'getTascData'])->name('getTascData');
-    Route::get('/projects_add', [projectsController::class, 'projects_add'])->middleware('auth')->name('projects_add');
-    Route::post('/tasc_add', [tascsController::class, 'tasc_add'])->middleware('auth')->name('tasc_add');
+    Route::get('/projects_add', [projectsController::class, 'projects_add'])->name('projects_add');
 
-    Route::post('/projects_save', [projectsController::class, 'projects_save'])->middleware('auth')->name('projects_save');
+    Route::post('/projects_save', [projectsController::class, 'projects_save'])->name('projects_save');
 
+    Route::post('/project/removeProject_getInfo', [projectsController::class, 'removeProject_getInfo'])->name('removeProject_getInfo');
 
+    Route::get('/tascs', [tascsController::class, 'tascs'])->name('tascs');
+    Route::post('/tasc_add', [tascsController::class, 'tasc_add'])->name('tasc_add');
     Route::post('/tascs/edit_tasc', [tascsController::class, 'edit_tasc'])->name('edit_tasc');
     Route::post('/tascs/del_tasc_file', [tascsController::class, 'del_tasc_file'])->name('del_tasc_file');
+
     Route::get('/matrix/{id?}', [MatrixController::class, 'showMatrix'])->name('matrix');
     Route::post('/matrix', [MatrixController::class, 'setMatrixStatus'])->name('setMatrixStatus');
 
