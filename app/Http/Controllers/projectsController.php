@@ -69,13 +69,15 @@ class projectsController extends Controller
 
     public function removeProject_getInfo(Request $req){
 
-        $project = Projects::with(['Tascs', 'Tascs.tascFiles'])
+        $project = Projects::with(['Tascs', 'Tascs.tascFiles', 'getTeamMeta', 'getCanbansMeta'])
             ->where(['id'=>$req->get('id'), 'user_id'=>Auth::user()->id])
             ->firstOrFail();
 
-
         return ['project'=>$project, 'creator_id'=>$project->user_id];
+    }
 
-
+    public function remove_project(Request $req){
+        dd($req->all());
+        return redirect(route('user.projects'));
     }
 }

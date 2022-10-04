@@ -10,3 +10,17 @@
     </div>
 
 </div>
+
+
+<script>
+    function addCloseEvent(){
+        var modal = document.querySelector('#pin_project')
+        var instance = M.Modal.getInstance(modal)
+        instance.options.onCloseEnd = () => {
+            window.location.reload()
+        }
+    }
+
+    setTimeout(addCloseEvent, 300)
+
+</script>

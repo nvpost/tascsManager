@@ -10,11 +10,12 @@
     </div>
 
     <div class="team_projects">
-        <h3>Проекты</h3>
+        <h3>Проекты команды</h3>
 
         @include('content.Projects_table', ['projects'=>$projects, 'addToteam'=>true])
-
-        @include('team.pin_more_taem')
+            @if($team['creator_id'] == Auth::user()->id)
+                @include('team.pin_more_projects')
+            @endif
 
 {{--        <div class="active_block_btns">--}}
 {{--            <a class="waves-effect waves-light btn" href="{{ route('user.projects_add') }}"><i class="material-icons left">add</i>Добавить проект</a>--}}
@@ -28,15 +29,18 @@
         @foreach($users as $row)
             @include('team.users')
         @endforeach
-        <div class="active_block_btns">
-            @include('team.add_user_modal')
-        </div>
+
+        @if($team['creator_id'] == Auth::user()->id)
+            <div class="active_block_btns">
+                @include('team.add_user_modal')
+            </div>
+        @endif
 
     </div>
 
 
 
-    @if($team['creator_id'] == \Illuminate\Support\Facades\Auth::user()->id)
+    @if($team['creator_id'] == Auth::user()->id)
         <div class="edit_team float_edit_banner">
         <span class="edit_icon material-icons"
               onclick="startEdit()">edit</span>
@@ -46,8 +50,12 @@
     @endif
 @endsection
 
+@if($team['creator_id'] == Auth::user()->id)
 @section('scripts')
     <script>
+
+
+
 
         var headers={
             "X-CSRF-Token":"{{csrf_token()}}",
@@ -81,8 +89,6 @@
                 })
         }
 
-
-
-
     </script>
 @endsection
+@endif

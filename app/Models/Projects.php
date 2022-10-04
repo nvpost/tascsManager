@@ -24,4 +24,9 @@ class Projects extends Model
     public function getTeamMeta(){
         return $this->hasMany(TeamsProjectsMeta::class, 'project_id', 'id');
     }
+
+
+    public function getCanbansMeta(){
+        return $this->hasMany(Canbans::class, 'project_id', 'id');
+    }
 }

@@ -85,6 +85,7 @@ Route::group(['as'=>'user.', 'middleware' => ['auth']], function(){
     Route::post('/projects_save', [projectsController::class, 'projects_save'])->name('projects_save');
 
     Route::post('/project/removeProject_getInfo', [projectsController::class, 'removeProject_getInfo'])->name('removeProject_getInfo');
+    Route::post('/project/remove_project', [projectsController::class, 'remove_project'])->name('remove_project');
 
     Route::get('/tascs', [tascsController::class, 'tascs'])->name('tascs');
     Route::post('/tasc_add', [tascsController::class, 'tasc_add'])->name('tasc_add');

@@ -36,10 +36,13 @@
             }).then(res=>res.json())
                 .then((data=>{
                         //window.location.reload()
-                        console.log(data)
+
+                        drowFialogProjectInfo(data.project)
                     }
                 ))
         }
+
+
     </script>
 
 @endsection
