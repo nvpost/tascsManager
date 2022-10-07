@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Canbans;
 use App\Models\Projects;
 use App\Models\Statuses;
 use App\Models\Tascs;
 use App\Models\TascsFiles;
+use App\Models\TeamsProjectsMeta;
 use Carbon\Carbon;
 use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class projectsController extends Controller
 {
@@ -77,7 +80,50 @@ class projectsController extends Controller
     }
 
     public function remove_project(Request $req){
-        dd($req->all());
+
+        $project_id = $req->get('project_id');
+        $project = Projects::with(['Tascs', 'Tascs.tascFiles', 'getTeamMeta', 'getCanbansMeta'])
+            ->where(['id'=>$project_id, 'user_id'=>Auth::user()->id])
+            ->firstOrFail();
+
+        $tascs = $project->tascs();
+
+
+        //перебираем все файлы
+        $files_arr = [];
+        Storage::disk('local')->put('example.txt', 'Contents');
+        foreach ($tascs->get() as $t){
+
+            $dirname = "upl_files/tascs/".$t->id;
+            if(is_dir( $dirname )){
+                if(count(glob("$dirname/*.*"))>0){
+                    array_map('unlink', glob("$dirname/*.*"));
+                }
+
+                rmdir($dirname);
+            }
+
+            TascsFiles::where(['tasc_id'=>$t->id])->delete();
+        }
+
+        $tascs->delete();
+
+
+
+
+        //TeamMeta
+        TeamsProjectsMeta::where(['project_id'=>$project_id])->delete();
+        //CanbanMeta
+        Canbans::where(['project_id'=>$project_id])->delete();
+
+        //fileLink
+
+
+
+        $project->delete();
+
+
+
         return redirect(route('user.projects'));
     }
 }
