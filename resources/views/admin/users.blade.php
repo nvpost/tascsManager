@@ -39,7 +39,7 @@
 <script>
     function editRole(role_id, user_id){
         console.log(role_id, user_id)
-        fetch("{{route('set_role')}}", {
+        fetch("{{route('admin.set_role')}}", {
             method: "POST",
             headers:{
                 "X-CSRF-Token":"{{csrf_token()}}",

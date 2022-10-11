@@ -58,14 +58,16 @@ Route::name('user.')->group(function (){
 
 
 
-Route::post('add_role', [RolesController ::class, 'add_role'])->name('add_role');
-Route::post('set_role', [RolesController ::class, 'set_role'])->name('set_role');
+
 
 
 Route::get('/project/{id}', [projectsController::class, 'showProject'])->name('showProject');
 
 
 Route::group(['as'=>'admin.', 'middleware' => ['isAdmin'] ], function(){
+//    Route::post('add_role', [RolesController ::class, 'add_role'])->name('add_role');
+    Route::post('set_role', [RolesController ::class, 'set_role'])->name('set_role');
+
     Route::get('users', [usersController ::class, 'showUsers'])->name('users');
     Route::get('roles', [RolesController ::class, 'roles'])->name('roles');
 
@@ -78,6 +80,7 @@ Route::group(['as'=>'admin.', 'middleware' => ['isAdmin'] ], function(){
 Route::group(['as'=>'user.', 'middleware' => ['auth']], function(){
 
     Route::get('/projects', [projectsController::class, 'projects'])->name('projects');
+    Route::get('/user_info', [usersController::class, 'user_info'])->name('user_info');
 
     Route::post('/get_tasc_data', [tascsController::class, 'getTascData'])->name('getTascData');
     Route::get('/projects_add', [projectsController::class, 'projects_add'])->name('projects_add');

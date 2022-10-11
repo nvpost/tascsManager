@@ -45,8 +45,11 @@ textarea{
     align-items: center;
     height: 100%;
 }
+nav .nav-wrapper{
+    padding: 0px 50px;
+}
 nav .brand-logo{
-    position: unset;
+    /*position: unset;*/
     margin-right: 20px;
 }
 .near_logo_nav_item{

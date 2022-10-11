@@ -5,10 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Roles;
 use App\Models\UserAdminRole;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class RolesController extends Controller
 {
     public function roles(){
+
+        if(!Gate::any(['isSuperAdmin', 'isAdmin'], 4)){
+            abort(403);
+        }
+
         $role = new Roles();
         return view('admin.roles', [
             'roles' => $role->all()
@@ -16,8 +22,11 @@ class RolesController extends Controller
         ]);
     }
     public function add_role(Request $req){
-        $role = new Roles();
+        if(!Gate::any(['isSuperAdmin', 'isAdmin'], 4)){
+            abort(403);
+        }
 
+        $role = new Roles();
 
         $data = $req->validate([
             "name" => "required|string|max:255",
@@ -38,6 +47,11 @@ class RolesController extends Controller
     }
 
     public function set_role(Request $req){
+        if(!Gate::any(['isSuperAdmin', 'isAdmin'], 4)){
+            abort(403);
+        }
+
+
         $r_id = (int)$req->get('role_id');
         $u_id = (int)$req->get('user_id');
         $ch = UserAdminRole::where(["role_id"=>$r_id, "admin_user_id"=>$u_id])->get();
@@ -56,6 +70,11 @@ class RolesController extends Controller
     }
 
     public function edit_role(Request $req){
+        if(!Gate::any(['isSuperAdmin', 'isAdmin'], 4)){
+            abort(403);
+        }
+
+
         $r_id = (int)$req->get('id');
         $r_value = $req->get('value');
         Roles::where(['id'=>$r_id])
@@ -65,6 +84,10 @@ class RolesController extends Controller
     }
 
     public function delete_role(Request $req){
+        if(!Gate::any(['isSuperAdmin', 'isAdmin'], 4)){
+            abort(403);
+        }
+
         $r_id = (int)$req->get('id');
         Roles::where('id', $r_id )->delete();
         return ['res'=>'ok', 'data'=>$req->all()];
