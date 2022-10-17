@@ -39,7 +39,7 @@
                     <li class="hide-on-med-and-down"><a href="{{ route('user.matrix') }}"><span class="material-icons">grid_view</span></a></li>
                     <li class="hide-on-med-and-down"><a href="{{ route('user.canban') }}"><span class="material-icons">dashboard_customize</span></a></li>
 
-                    <li><a class='dropdown-trigger btn blue lighten-2' href='#' data-target='userInfo'>{{Auth::user()->name}}</a>
+                    <li><a class='dropdown-trigger btn green darken-1' href='#' data-target='userInfo'>{{Auth::user()->name}}</a>
                         <ul id='userInfo' class='dropdown-content'>
                             <li><a href="{{ route('user.user_info') }}">Обо мне</a></li>
 
@@ -47,6 +47,7 @@
                             <li><a href="{{ route('user.projects') }}">Проекты</a></li>
                             <li><a href="{{ route('user.matrix') }}">Матрица</a></li>
                             <li><a href="{{ route('user.matrix') }}">Канбан</a></li>
+                            <li><a href="{{ route('user.teams') }}">Команды</a></li>
                             <li class="divider" tabindex="-1"></li>
 
                             @if(Gate::any(['isSuperAdmin','isAdmin']))

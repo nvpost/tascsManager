@@ -20,5 +20,20 @@ class TeamsUserMeta extends Model
         return $this->hasMany(User::class, 'id', 'user_id');
     }
 
+    public function getTeams(){
+        return $this->hasMany(Teams::class, 'id', 'team_id');
+    }
+
+    public function getProjects(){
+        return $this->hasManyThrough(
+            Projects::class,
+            TeamsProjectsMeta::class,
+            'id',
+            'project_id'
+        );
+    }
+
+
+
 
 }

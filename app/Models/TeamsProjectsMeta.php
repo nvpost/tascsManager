@@ -15,4 +15,8 @@ class TeamsProjectsMeta extends Model
         "team_id",
         "project_id"
     ];
+
+    public function getProjects(){
+        return $this->hasMany(Projects::class, 'id', 'project_id');
+    }
 }
